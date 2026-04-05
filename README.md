@@ -5,9 +5,9 @@ This tool merges extension parameters from one GPX file into another, synchroniz
 
 ## Usage
 Run the `run_merger.bat` batch file. You will be prompted for:
-- Source File Name (default: from.gpx)
-- Second File Name (default: to.gpx)
-- Output File Name (default: merged.tpx)
+- FROM file (source of extensions) (default: from.gpx)
+- TO file (base geometry/track kept) (default: to.gpx)
+- Output File Name (default: merged.gpx)
 - GPX creator attribute value (leave blank to keep original)
 - Space separated extension names (e.g. `hr cad`)
 
@@ -18,7 +18,7 @@ run_merger.bat
 
 ## How it works
 - The script synchronizes track points by their `<time>` value.
-- For each matching time, it copies the specified extension parameters (e.g., `<gpxtpx:hr>`) from the second file to the first.
+- For each matching time, it copies the specified extension parameters (e.g., `<gpxtpx:hr>`) from the FROM file to the TO file.
 - The merged file is saved with the name you provide.
 - If you enter a creator value, the output GPX will have its `creator` attribute set to that value.
 
@@ -27,5 +27,5 @@ run_merger.bat
 - The `Merger.py` script must be in the same directory.
 
 ## Notes
-- The tool preserves all other data in the first file and only adds/updates the specified extensions.
+- The tool preserves all geometry and track points from the base file and only adds/updates the specified extensions.
 - The batch file provides defaults for convenience, but you can enter any file names you wish.

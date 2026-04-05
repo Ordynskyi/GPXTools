@@ -7,31 +7,29 @@ if exist merger_template.txt (
         set "%%A=%%B"
     )
 ) else (
-    set "FILE1=from.gpx"
-    set "FILE2=to.gpx"
+    set "FROM=from.gpx"
+    set "TO=to.gpx"
     set "OUTPUT=merged.gpx"
     set "CREATOR="
     set "PARAMS=hr"
 )
 
-set /p FILE1="Enter Source File Name with extension [default: !FILE1!]: "
-if "!FILE1!"=="" set FILE1=!FILE1!
-set /p FILE2="Enter Second File Name with extension [default: !FILE2!]: "
-if "!FILE2!"=="" set FILE2=!FILE2!
-set /p OUTPUT="Enter Output File Name with extension [default: !OUTPUT!]: "
-if "!OUTPUT!"=="" set OUTPUT=!OUTPUT!
-set /p CREATOR="Enter GPX creator attribute value [default: (!CREATOR!)]: "
-REM If left blank, do not pass --creator argument
-set "CREATOR_ARG="
-if not "!CREATOR!"=="" set "CREATOR_ARG=--creator=\"!CREATOR!\""
-set /p PARAMS="Enter space separated extension names (e.g. hr cad) [default: !PARAMS!]: "
-if "!PARAMS!"=="" set PARAMS=!PARAMS!
+set /p INPUT_FROM="Enter FROM file (source of extensions) [default: !FROM!]: "
+if not "!INPUT_FROM!"=="" set "FROM=!INPUT_FROM!"
+set /p INPUT_TO="Enter TO file (base geometry/track) [default: !TO!]: "
+if not "!INPUT_TO!"=="" set "TO=!INPUT_TO!"
+set /p INPUT_OUTPUT="Enter Output File Name with extension [default: !OUTPUT!]: "
+if not "!INPUT_OUTPUT!"=="" set "OUTPUT=!INPUT_OUTPUT!"
+set /p INPUT_CREATOR="Enter GPX creator attribute value [default: (!CREATOR!)]: "
+if not "!INPUT_CREATOR!"=="" set "CREATOR=!INPUT_CREATOR!"
+set /p INPUT_PARAMS="Enter space separated extension names (e.g. hr cad) [default: !PARAMS!]: "
+if not "!INPUT_PARAMS!"=="" set "PARAMS=!INPUT_PARAMS!"
 
 REM Call the Python merger script
 if not "!CREATOR!"=="" (
-    python Merger.py "!FILE1!" "!FILE2!" "!OUTPUT!" !PARAMS! --creator "!CREATOR!"
+    python Merger.py "!FROM!" "!TO!" "!OUTPUT!" !PARAMS! --creator "!CREATOR!"
 ) else (
-    python Merger.py "!FILE1!" "!FILE2!" "!OUTPUT!" !PARAMS!
+    python Merger.py "!FROM!" "!TO!" "!OUTPUT!" !PARAMS!
 )
 
 echo Merge complete. Output written to !OUTPUT!

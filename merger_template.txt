@@ -1,5 +1,5 @@
-FILE1=from.gpx
-FILE2=to.gpx
+FROM=from.gpx
+TO=to.gpx
 OUTPUT=merged.gpx
 CREATOR=
 PARAMS=hr
