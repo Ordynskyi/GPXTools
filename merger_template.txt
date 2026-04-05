@@ -1,0 +1,5 @@
+FILE1=from.gpx
+FILE2=to.gpx
+OUTPUT=merged.gpx
+CREATOR=
+PARAMS=hr
