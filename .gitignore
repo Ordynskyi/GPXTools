@@ -1,3 +1,7 @@
 from.gpx
 merged.gpx
 to.gpx
+plan.txt
+.venv/
+.coverage
+__pycache__/
